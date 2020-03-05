@@ -10,7 +10,10 @@ export const Contacts = () => {
 		showModal: false
 	});
 	const { store, actions } = useContext(Context);
-	console.log("STORE", store);
+
+	useEffect(() => {
+		console.log("STORE", store);
+	}, []);
 
 	return (
 		<div className="container">
@@ -20,10 +23,10 @@ export const Contacts = () => {
 						Add new contact
 					</Link>
 				</p>
+				{}
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">
 					<ul className="list-group pull-down" id="contact-list">
 						{store.contacts.map((item, index) => {
-							console.log(item.full_name);
 							return (
 								<ContactCard
 									key={index}

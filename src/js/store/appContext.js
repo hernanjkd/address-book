@@ -22,13 +22,8 @@ const injectContext = PassedComponent => {
 		);
 
 		useEffect(() => {
-			fetch("https://assets.breatheco.de/apis/fake/contact/agenda/dlozano93")
-				.then(resp => resp.json())
-				.then(data => {
-					state.actions.saveInitialFetch(data);
-				});
+			state.actions.updateContacts();
 		}, []);
-
 		/**
 		 * EDIT THIS!
 		 * This function is the equivalent to "window.onLoad", it only run once on the entire application lifetime
