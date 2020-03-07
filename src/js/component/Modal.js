@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { withRouter } from "react-router-dom";
 import PropTypes from "prop-types";
+import { Context } from "../store/appContext";
 
 export const Modal = props => {
+	const { store, actions } = useContext(Context);
 	const [state, setState] = useState({
 		//initialize state here
 	});
+
 	return (
 		<div className="modal" tabIndex="-1" role="dialog" style={{ display: props.show ? "inline-block" : "none" }}>
 			<div className="modal-dialog" role="document">
@@ -26,14 +29,21 @@ export const Modal = props => {
 						)}
 					</div>
 					<div className="modal-body">
-						<p>Warning: unknown consequences after this point... Kidding!</p>
+						<p>Do you want to delete this contact?</p>
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-primary">
-							Oh no!
+						<button type="button" className="btn btn-secondary" onClick={() => props.onClose()}>
+							No
 						</button>
-						<button type="button" className="btn btn-secondary" data-dismiss="modal">
-							Do it!
+						<button
+							type="button"
+							className="btn btn-danger"
+							data-dismiss="modal"
+							onClick={() => {
+								actions.deleteContacts(props.id);
+								props.onClose();
+							}}>
+							Yes
 						</button>
 					</div>
 				</div>
@@ -48,11 +58,12 @@ export const Modal = props => {
 Modal.propTypes = {
 	history: PropTypes.object,
 	onClose: PropTypes.func,
-	show: PropTypes.bool
+	show: PropTypes.bool,
+	id: PropTypes.number
 };
 
 /**
- * Define the default values for
+ * Definr
  * your component's properties
  **/
 Modal.defaultProps = {

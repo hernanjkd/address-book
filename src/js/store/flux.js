@@ -1,4 +1,4 @@
-const getState = ({ getStore, setStore }) => {
+const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
 			contacts: []
@@ -10,9 +10,17 @@ const getState = ({ getStore, setStore }) => {
 					.then(data => {
 						setStore({ contacts: data });
 					});
+			},
+			deleteContacts: id => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+					method: "DELETE"
+				}).then(() => {
+					getActions().updateContacts();
+				});
+
+				//(Arrow) Functions that update the Store
+				// Remember to use the scope: scope.state.store & scope.setState()
 			}
-			//(Arrow) Functions that update the Store
-			// Remember to use the scope: scope.state.store & scope.setState()
 		}
 	};
 };

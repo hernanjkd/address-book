@@ -7,7 +7,8 @@ import { Modal } from "../component/Modal";
 
 export const Contacts = () => {
 	const [state, setState] = useState({
-		showModal: false
+		showModal: false,
+		id: null
 	});
 	const { store, actions } = useContext(Context);
 
@@ -34,14 +35,14 @@ export const Contacts = () => {
 									address={item.address}
 									email={item.email}
 									phone={item.phone}
-									onDelete={() => setState({ showModal: true })}
+									onDelete={() => setState({ showModal: true, id: item.id })}
 								/>
 							);
 						})}
 					</ul>
 				</div>
 			</div>
-			<Modal show={state.showModal} onClose={() => setState({ showModal: false })} />
+			<Modal show={state.showModal} id={state.id} onClose={() => setState({ showModal: false })} />
 		</div>
 	);
 };

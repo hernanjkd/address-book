@@ -1,8 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
+import PropTypes from "prop-types";
 
-export const AddContact = () => {
+export const AddContact = props => {
 	const { store, actions } = useContext(Context);
 
 	const [full_name, setFull_name] = useState();
@@ -25,6 +26,8 @@ export const AddContact = () => {
 				actions.updateContacts();
 				console.log("saveContact", data);
 			});
+
+		props.history.push("/");
 	}
 
 	return (
@@ -93,4 +96,8 @@ export const AddContact = () => {
 			</div>
 		</div>
 	);
+};
+
+AddContact.propTypes = {
+	history: PropTypes.object
 };
