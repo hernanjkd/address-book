@@ -17,10 +17,21 @@ const getState = ({ getStore, getActions, setStore }) => {
 				}).then(() => {
 					getActions().updateContacts();
 				});
-
-				//(Arrow) Functions that update the Store
-				// Remember to use the scope: scope.state.store & scope.setState()
+			},
+			editContacts: id => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+					method: "PUT",
+					body: JSON.stringify(),
+					headers: {
+						"Content-Type": "application/json"
+					}
+				}).then(() => {
+					getActions().updateContacts();
+				});
 			}
+
+			//(Arrow) Functions that update the Store
+			// Remember to use the scope: scope.state.store & scope.setState()
 		}
 	};
 };

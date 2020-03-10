@@ -31,6 +31,7 @@ export const Contacts = () => {
 							return (
 								<ContactCard
 									key={index}
+									index={index}
 									name={item.full_name}
 									address={item.address}
 									email={item.email}
