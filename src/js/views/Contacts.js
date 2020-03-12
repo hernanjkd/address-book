@@ -23,6 +23,9 @@ export const Contacts = () => {
 					<Link className="btn btn-success" to="/add">
 						Add new contact
 					</Link>
+					<button className="btn btn-danger" onClick={() => actions.deleteAll()}>
+						DELETE EVERYTHING!!
+					</button>
 				</p>
 				{}
 				<div id="contacts" className="panel-collapse collapse show" aria-expanded="true">

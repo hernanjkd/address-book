@@ -11,12 +11,12 @@ export const AddContact = props => {
 	const [address, setAddress] = useState();
 	const [phone, setPhone] = useState();
 
-	function saveContact(x) {
-		console.log(x);
+	function saveContact(contactobject) {
+		console.log(contactobject);
 
 		fetch("https://assets.breatheco.de/apis/fake/contact/", {
 			method: "POST",
-			body: JSON.stringify(x),
+			body: JSON.stringify(contactobject),
 			headers: {
 				"Content-Type": "application/json"
 			}
@@ -89,9 +89,11 @@ export const AddContact = props => {
 						}>
 						save
 					</button>
-					<Link className="mt-3 w-100 text-center" to="/">
-						or get back to contacts
-					</Link>
+					<div className="row justify-content-center">
+						<Link className="mt-3 w-100 text-center" to="/">
+							or get back to contacts
+						</Link>
+					</div>
 				</form>
 			</div>
 		</div>

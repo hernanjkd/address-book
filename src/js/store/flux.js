@@ -1,4 +1,6 @@
-const getState = ({ getStore, getActions, setStore }) => {
+import PropTypes from "prop-types";
+
+const getState = ({ getStore, getActions, setStore, props }) => {
 	return {
 		store: {
 			contacts: []
@@ -18,13 +20,20 @@ const getState = ({ getStore, getActions, setStore }) => {
 					getActions().updateContacts();
 				});
 			},
-			editContacts: id => {
-				fetch("https://assets.breatheco.de/apis/fake/contact/" + id, {
+			editContacts: (a, b) => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/" + a, {
 					method: "PUT",
-					body: JSON.stringify(),
+					body: JSON.stringify(b),
 					headers: {
 						"Content-Type": "application/json"
 					}
+				}).then(() => {
+					getActions().updateContacts();
+				});
+			},
+			deleteAll: () => {
+				fetch("https://assets.breatheco.de/apis/fake/contact/agenda/dlozano93", {
+					method: "DELETE"
 				}).then(() => {
 					getActions().updateContacts();
 				});
@@ -37,3 +46,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 };
 
 export default getState;
+
+getState.propTypes = {
+	history: PropTypes.object
+};
