@@ -18,15 +18,6 @@ export const EditContact = props => {
 			<div>
 				<h1 className="text-center mt-5">Edit a contact</h1>
 				<div className="row">
-					<div className="col-sm">
-						<h3>Full Name: {contact.full_name}</h3>
-						<br />
-						<h3>Email: {contact.email}</h3>
-						<br />
-						<h3>Phone: {contact.phone}</h3>
-						<br />
-						<h3>Address: {contact.address} </h3>
-					</div>
 					<div className="col-md">
 						<div>
 							<div className="form-group">
